@@ -59,7 +59,7 @@ export default function Home(): JSX.Element {
           <Error />
         ) : (
           <>
-            <CardList cards={formattedData} />
+            {/* <CardList cards={formattedData} /> */}
             {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
           </>
         )}
