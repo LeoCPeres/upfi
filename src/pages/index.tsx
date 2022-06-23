@@ -40,29 +40,29 @@ export default function Home(): JSX.Element {
     { getNextPageParam: (lastPage) => lastPage.after }
   );
 
-  const formattedData = useMemo(() => {
-    // TODO FORMAT AND FLAT DATA ARRAY
+  const formattedData: Card[] = useMemo<Card[]>(() => {
+    const response = data?.pages
+      .map((x) => {
+        return x.data;
+      })
+      .flat();
+
+    return response;
   }, [data]);
 
-  // TODO RENDER LOADING SCREEN
-
-  // TODO RENDER ERROR SCREEN
+  if (isLoading) {
+    return <Loading />;
+  } else if (isError) {
+    return <Error />;
+  }
 
   return (
     <>
       <Header />
 
       <Box maxW={1120} px={20} mx="auto" my={20}>
-        {isLoading ? (
-          <Loading />
-        ) : isError ? (
-          <Error />
-        ) : (
-          <>
-            {/* <CardList cards={formattedData} /> */}
-            {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
-          </>
-        )}
+        <CardList cards={formattedData} />
+        {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
       </Box>
     </>
   );
