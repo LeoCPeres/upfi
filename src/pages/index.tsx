@@ -77,13 +77,13 @@ var teste = {
 export default function Home(): JSX.Element {
   async function getImages({ pageParam = null }): Promise<fetchImagesResponse> {
     if (pageParam) {
-      const { data } = await api.get(`/images`, {
+      const { data } = await api.get(`/api/images`, {
         params: { after: pageParam },
       });
       return data;
     }
 
-    const { data } = await api.get("/images");
+    const { data } = await api.get("/api/images");
     return data;
   }
 
@@ -94,14 +94,14 @@ export default function Home(): JSX.Element {
   );
 
   const formattedData: Card[] = useMemo<Card[]>(() => {
-    const response = teste?.pages
+    const response = data?.pages
       .map((x) => {
         return x.data;
       })
       .flat();
 
     return response;
-  }, [teste]);
+  }, [data]);
 
   if (isLoading) {
     return <Loading />;
