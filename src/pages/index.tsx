@@ -1,5 +1,5 @@
 import { Button, Box } from "@chakra-ui/react";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useInfiniteQuery } from "react-query";
 
 import { Header } from "../components/Header";
@@ -90,7 +90,7 @@ export default function Home(): JSX.Element {
   const { data, isLoading, isError, isFetchingNextPage, fetchNextPage, hasNextPage } = useInfiniteQuery(
     "images",
     getImages,
-    { getNextPageParam: (lastPage) => lastPage.after }
+    { getNextPageParam: (lastPage) => lastPage.after ?? null }
   );
 
   const formattedData: Card[] = useMemo<Card[]>(() => {
