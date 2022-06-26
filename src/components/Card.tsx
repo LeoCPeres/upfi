@@ -1,12 +1,5 @@
-import {
-  Box,
-  Heading,
-  Text,
-  Image,
-  Skeleton,
-  SkeletonText,
-} from '@chakra-ui/react';
-import { useState } from 'react';
+import { Box, Heading, Text, Image, Skeleton, SkeletonText } from "@chakra-ui/react";
+import { useState } from "react";
 
 interface Card {
   title: string;
@@ -30,7 +23,7 @@ export function Card({ data, viewImage }: CardProps): JSX.Element {
           src={data.url}
           alt={data.title}
           objectFit="cover"
-          w="max"
+          w="100%"
           h={48}
           borderTopRadius="md"
           onClick={() => viewImage(data.url)}
